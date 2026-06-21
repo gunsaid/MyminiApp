@@ -17,25 +17,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bot Telegram Gue</title>
+    <title>Downloader Media</title>
     <style>
-        body {
-            background-color: #1c1c1c;
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: sans-serif;
-            text-align: center;
-        }
+        body { font-family: sans-serif; background: #f4f4f9; padding: 20px; text-align: center; }
+        input { width: 90%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; }
+        button { background: #0088cc; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; }
+        #result { margin-top: 20px; padding: 10px; background: white; border-radius: 5px; }
     </style>
 </head>
 <body>
-    <div>
-        <h1>Halo, Selamat Datang!</h1>
-        <p>Bot Telegram gue lagi berjalan lancar.</p>
-    </div>
+    <h2>Downloader Media</h2>
+    <p>Tempel link (TikTok/IG/YT) di bawah:</p>
+    <input type="text" id="urlInput" placeholder="https://...">
+    <br>
+    <button onclick="downloadMedia()">Download</button>
+    
+    <div id="result">Hasil akan muncul di sini...</div>
+
+    <script>
+        function downloadMedia() {
+            const url = document.getElementById('urlInput').value;
+            if(url) {
+                document.getElementById('result').innerText = "Sedang memproses: " + url;
+                // Nanti di sini kita sambungin ke API downloader
+            } else {
+                alert("Masukin link dulu, bro!");
+            }
+        }
+    </script>
 </body>
 </html>
