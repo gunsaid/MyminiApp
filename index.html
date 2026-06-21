@@ -35,15 +35,27 @@
     <div id="result">Hasil akan muncul di sini...</div>
 
     <script>
-        function downloadMedia() {
-            const url = document.getElementById('urlInput').value;
-            if(url) {
-                document.getElementById('result').innerText = "Sedang memproses: " + url;
-                // Nanti di sini kita sambungin ke API downloader
-            } else {
-                alert("Masukin link dulu, bro!");
-            }
+    async function downloadMedia() {
+        const url = document.getElementById('urlInput').value;
+        const resultDiv = document.getElementById('result');
+        
+        if (!url) {
+            alert("Masukin link dulu, bro!");
+            return;
         }
-    </script>
-</body>
-</html>
+
+        resultDiv.innerText = "Lagi proses... tunggu sebentar ya!";
+
+        try {
+            // Kita pakai API downloader gratisan
+            const apiUrl = `https://api.allorigins.win/get?url=${encodeURIComponent('https://api.tikdown.org/api/download?url=' + url)}`;
+            
+            // Contoh sederhana: Arahkan user ke link downloader (ini cara paling aman tanpa ribet API Key)
+            window.open('https://snaptik.app/en?url=' + encodeURIComponent(url), '_blank');
+            
+            resultDiv.innerText = "Sip, link sudah dibuka di tab baru!";
+        } catch (error) {
+            resultDiv.innerText = "Yah, gagal nih. Coba lagi nanti ya.";
+        }
+    }
+</script>
